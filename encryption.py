@@ -8,7 +8,14 @@ class Encryption():
                 if x < y and x * y == area]
         print(area)
         print(test)
+        rows = 3
+        cols = 4
         n = 4
-        grid = [[message[x: x + n]] for x in range(0, area, n)]
+        grid = [list(message[x: x + n]) for x in range(0, area, n)]
         print(grid)
-        return 0
+        answer = []
+        for x in range(0, cols):
+            for y in range(0, rows):
+                answer.append(grid[y][x])
+        print(answer)
+        return ''.join(answer)
