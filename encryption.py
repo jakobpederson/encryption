@@ -17,5 +17,6 @@ class Encryption():
         for x in range(0, cols):
             for y in range(0, rows):
                 answer.append(grid[y][x])
-        print(answer)
-        return ''.join(answer)
+        new_answer = [''.join(answer[i:i+rows]) for i in range(0, len(answer), rows)]
+        print(new_answer)
+        return ' '.join(new_answer)
