@@ -1,24 +1,36 @@
-import math
+from math import sqrt, ceil, floor
 
 
 class Encryption():
 
     def encrypt_message(self, message):
+        print('start')
         area = len(message)
-        test = [(x, y) for x in range(2, int(area/2)) for y in range(2, int(area/2) + 1)
-                if x < y and x * y == area and x >= math.floor(math.sqrt(area)) and y <= math.ceil(math.sqrt(area))]
-        print(area)
-        print(math.floor(math.sqrt(10)))
-        print(math.ceil(math.sqrt(10)))
-        rows = test[0][0]
-        cols = test[0][1]
-        n = cols
-        grid = [list(message[x: x + n]) for x in range(0, area, n)]
+        print('area', area)
+        sq_root = sqrt(area)
+        print('sqrt', sq_root)
+        bottom = floor(sq_root)
+        top = ceil(sq_root)
+        print('floor {} ceil {}'.format(bottom, top))
+        dimensions = [
+            (row, column) for row in range(0, area)
+            for column in range(0, area)
+            if row * column >= area and row < column
+            and column <= top and row <= bottom
+        ]
+        rows = dimensions[0][0]
+        columns = dimensions[0][1]
+        grid = [list(message[x: x + columns]) for x in range(0, area, columns)]
         print(grid)
         answer = []
-        for x in range(0, cols):
-            for y in range(0, rows):
-                answer.append(grid[y][x])
+        for value in range(0, columns):
+            for lst in grid:
+                try:
+                    if lst[value]:
+                        answer.append(lst[value])
+                except:
+                    continue
+                # answer.append(grid[row][column])
         new_answer = [''.join(answer[i:i+rows]) for i in range(0, len(answer), rows)]
-        print(new_answer)
+        print('new_answer', new_answer)
         return ' '.join(new_answer)
