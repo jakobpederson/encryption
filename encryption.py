@@ -21,19 +21,9 @@ class Encryption():
         rows = dimensions[0][0]
         columns = dimensions[0][1]
         grid = [list(message[x: x + columns]) for x in range(0, area, columns)]
-        print('grid', grid)
-        answer = []
-        complete = self.row_column_swap(grid)
-        for value in range(0, columns):
-            for lst in grid:
-                try:
-                    if lst[value]:
-                        answer.extend(lst[value])
-                except:
-                    continue
-        new_answer = [''.join(answer[i:i+rows]) for i in range(0, len(answer), rows)]
-        print('new_answer', self.row_column_swap(grid))
-        return ' '.join(new_answer)
+        rotated_grid = self.row_column_swap(grid)
+        stringified_grid = self.list_to_string(rotated_grid)
+        return ' '.join(stringified_grid)
 
     def row_column_swap(self, grid):
         from itertools import zip_longest
@@ -42,3 +32,8 @@ class Encryption():
             for element in list(zip_longest(*grid))]
         return result
 
+    def list_to_string(self, list_of_list_of_strings):
+        new_list = []
+        for x in list_of_list_of_strings:
+            new_list.append(''.join(x))
+        return new_list
