@@ -6,14 +6,13 @@ class Encryption():
 
     def encrypt_message(self, message):
         area = len(message)
-        sq_root = sqrt(area)
-        bottom = floor(sq_root)
-        top = ceil(sq_root)
+        bottom = floor(sqrt(area))
+        top = ceil(sqrt(area))
         dimensions = [
             (row, column) for row in range(0, area)
             for column in range(0, area)
-            if row * column >= area and row < column
-            and column <= top and row >= bottom
+            if row * column >= area and row < column and
+            column <= top and row >= bottom
         ]
         if dimensions:
             columns = dimensions[0][1]
