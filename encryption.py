@@ -13,7 +13,7 @@ class Encryption():
             (row, column) for row in range(0, area)
             for column in range(0, area)
             if row * column >= area and row < column
-            and column <= top and row <= bottom
+            and column <= top and row >= bottom
         ]
         if dimensions:
             columns = dimensions[0][1]
