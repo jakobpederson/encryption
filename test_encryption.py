@@ -10,7 +10,7 @@ class EncryptionTest(unittest.TestCase):
     def test_encrypt_message(self):
         self.assertEqual('hae and via ecy', self.client.encrypt_message('haveaniceday'))
         self.assertEqual('fto ehg ee dd', self.client.encrypt_message('feedthedog'))
-        self.fail('x')
+        self.assertEqual('clu hlt io', self.client.encrypt_message('chillout'))
 
     def test_swap_columns_rows(self):
         grid = [[1, 1, 1], [2, 2, 2], [3, 3]]
