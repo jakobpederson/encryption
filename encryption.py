@@ -21,16 +21,24 @@ class Encryption():
         rows = dimensions[0][0]
         columns = dimensions[0][1]
         grid = [list(message[x: x + columns]) for x in range(0, area, columns)]
-        print(grid)
+        print('grid', grid)
         answer = []
+        complete = self.row_column_swap(grid)
         for value in range(0, columns):
             for lst in grid:
                 try:
                     if lst[value]:
-                        answer.append(lst[value])
+                        answer.extend(lst[value])
                 except:
                     continue
-                # answer.append(grid[row][column])
         new_answer = [''.join(answer[i:i+rows]) for i in range(0, len(answer), rows)]
-        print('new_answer', new_answer)
+        print('new_answer', self.row_column_swap(grid))
         return ' '.join(new_answer)
+
+    def row_column_swap(self, grid):
+        from itertools import zip_longest
+        result = [
+            [i for i in element if i is not None]
+            for element in list(zip_longest(*grid))]
+        return result
+
